@@ -12,10 +12,6 @@ function Arrow({ direction = 'right' }: { direction?: 'right' | 'up' }) {
   )
 }
 
-function Spark() {
-  return <span className="pw-spark" aria-hidden="true">✦</span>
-}
-
 function moveTab(event: KeyboardEvent<HTMLButtonElement>, current: number, count: number, select: (index: number) => void) {
   const keys = ['ArrowRight', 'ArrowDown', 'ArrowLeft', 'ArrowUp', 'Home', 'End']
   if (!keys.includes(event.key)) return
@@ -55,7 +51,7 @@ export function ProductSection({ jobs }: { jobs: Job[] }) {
 
       <div className="pw-product-layout">
         <div className="pw-product-copy">
-          <div className="pw-product-kicker"><Spark /><span>{content.tasksLabel}</span></div>
+          <p className="pw-product-kicker">{content.tasksLabel}</p>
           <div className="pw-tabs" role="tablist" aria-label={content.tasksLabel}>
             {content.tasks.map((task, index) => <button
               key={task.id}
@@ -77,7 +73,6 @@ export function ProductSection({ jobs }: { jobs: Job[] }) {
         <article className={`pw-task-panel pw-${active.tint}`} id={`product-panel-${active.id}`} role="tabpanel" aria-labelledby={`product-tab-${active.id}`} tabIndex={0}>
           <div className="pw-task-intro">
             <div><p className="pw-task-label">{active.label}</p><h3>{active.title}</h3><p>{active.description}</p></div>
-            <div className="pw-demo-mascot" aria-hidden="true"><div className="pw-mascot-halo" /><img src={active.mascot} alt="" /></div>
           </div>
           <div className="pw-task-delivery">
             <h4>{content.taskListLabel}</h4>
@@ -146,12 +141,11 @@ export function WorkSection() {
                 <p>{active.description}</p>
                 <p className="pw-work-detail">{active.detail}</p>
               </div>
-              <div className="pw-work-mascot" aria-hidden="true"><div className="pw-mascot-halo" /><img src={active.mascot} alt="" /></div>
             </div>
             <div className="pw-work-line" aria-hidden="true">{content.steps.map((step, index) => <span key={step.id} className={index === activeIndex ? 'is-active' : undefined} />)}</div>
           </article>
         </div>
-        <div className="pw-vibe-closing"><Spark /><p>{content.closing}</p></div>
+        <div className="pw-vibe-closing"><p>{content.closing}</p></div>
       </div>
     </section>
   )

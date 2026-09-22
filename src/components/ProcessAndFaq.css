@@ -18,10 +18,11 @@
   display: grid;
   grid-template-columns: minmax(0, 1.25fr) minmax(250px, .75fr);
   gap: 28px;
+  align-items: start;
   padding: 36px;
   border: 1px solid #e4dfe9;
   border-radius: 22px;
-  background: linear-gradient(135deg, #fbfaf8 0%, #f2edf6 100%);
+  background: linear-gradient(135deg, #fbfbf9 0%, #f1f4f2 100%);
   overflow: hidden;
 }
 
@@ -51,10 +52,10 @@
   width: 38px;
   height: 38px;
   place-items: center;
-  border: 1px solid #d6c9e1;
+  border: 1px solid #cfdcd8;
   border-radius: 50%;
-  background: #f8f4fb;
-  color: #9073ae;
+  background: #f4f8f6;
+  color: #56736d;
   font-family: 'IBM Plex Mono', monospace;
   font-size: 10px;
 }
@@ -95,9 +96,9 @@
 
 .pf-example-tag,
 .pf-confirm-note {
-  border: 1px solid #dfd3e6;
+  border: 1px solid #d4dfdc;
   border-radius: 99px;
-  color: #a08ead;
+  color: #6d8580;
   font-size: 9px;
   line-height: 1;
 }
@@ -108,21 +109,16 @@
 
 .pf-process-aside {
   position: relative;
-  min-height: 365px;
+  min-height: 250px;
   padding: 26px 25px;
-  border: 1px solid #e5dfe9;
+  border: 1px solid #dfe5e2;
   border-radius: 17px;
-  background: #ebe4f2;
+  background: #f2f4f3;
   overflow: hidden;
 }
 
-.pf-process-aside > :not(.pf-mascot-wrap) {
-  position: relative;
-  z-index: 1;
-}
-
 .pf-aside-kicker {
-  color: #9c86ae;
+  color: #718783;
   font-family: 'IBM Plex Mono', monospace;
   font-size: 8px;
   letter-spacing: 1.3px;
@@ -131,7 +127,7 @@
 .pf-process-aside h3 {
   max-width: 220px;
   margin: 20px 0 12px;
-  color: #403548;
+  color: #35413f;
   font-size: 23px;
   font-weight: 500;
   letter-spacing: -.55px;
@@ -140,7 +136,7 @@
 
 .pf-process-aside > p:not(.pf-aside-kicker) {
   max-width: 260px;
-  color: #8e8199;
+  color: #71817d;
   font-size: 12px;
   line-height: 1.85;
 }
@@ -159,68 +155,6 @@
   min-height: 44px;
   margin-top: 20px;
   font-size: 11px;
-}
-
-.pf-mascot-wrap {
-  position: absolute;
-  right: -23px;
-  bottom: -43px;
-  width: 190px;
-  height: 190px;
-  pointer-events: none;
-  transform: rotate(7deg);
-}
-
-.pf-mascot {
-  position: absolute;
-  right: 15px;
-  bottom: 0;
-  width: 142px;
-  height: 142px;
-  object-fit: contain;
-  filter: drop-shadow(0 12px 10px #6d597d25);
-  animation: pf-float 4.2s ease-in-out infinite;
-}
-
-.pf-mascot-orbit {
-  position: absolute;
-  display: block;
-  border: 1px solid #c2adce;
-  border-radius: 50%;
-  opacity: .75;
-}
-
-.pf-mascot-orbit-one {
-  right: 7px;
-  bottom: 13px;
-  width: 168px;
-  height: 72px;
-  transform: rotate(-27deg);
-}
-
-.pf-mascot-orbit-two {
-  right: 25px;
-  bottom: -6px;
-  width: 110px;
-  height: 169px;
-  transform: rotate(25deg);
-}
-
-.pf-mascot-spark {
-  position: absolute;
-  color: #af91c5;
-  font-size: 20px;
-}
-
-.pf-mascot-spark-one {
-  top: 8px;
-  right: 32px;
-}
-
-.pf-mascot-spark-two {
-  top: 49px;
-  right: 0;
-  font-size: 27px;
 }
 
 .pf-faq-section {
@@ -335,17 +269,12 @@
 
 .pf-faq-contact {
   position: relative;
-  min-height: 295px;
+  min-height: 230px;
   padding: 27px 25px 24px;
   border: 1px solid #e3dce8;
   border-radius: 18px;
   background: #f0eee9;
   overflow: hidden;
-}
-
-.pf-faq-contact > :not(.pf-faq-contact-mascot) {
-  position: relative;
-  z-index: 1;
 }
 
 .pf-faq-contact h3 {
@@ -391,25 +320,6 @@
 .pf-apply-link:hover,
 .pf-apply-link:focus-visible {
   color: #604275;
-}
-
-.pf-faq-contact-mascot {
-  position: absolute;
-  right: -28px;
-  bottom: -35px;
-  width: 145px;
-  height: 145px;
-  opacity: .86;
-  pointer-events: none;
-  transform: rotate(-10deg);
-}
-
-.pf-faq-contact-mascot img {
-  width: 100%;
-  height: 100%;
-  object-fit: contain;
-  filter: drop-shadow(0 10px 8px #6d597d18);
-  animation: pf-float 4.7s ease-in-out infinite reverse;
 }
 
 .pf-contact-dialog {
@@ -502,11 +412,6 @@
   font-size: 10px;
 }
 
-@keyframes pf-float {
-  0%, 100% { transform: translateY(0) rotate(0deg); }
-  50% { transform: translateY(-7px) rotate(2deg); }
-}
-
 @media (max-width: 900px) {
   .pf-process-card {
     grid-template-columns: minmax(0, 1fr) 250px;
@@ -571,7 +476,7 @@
   }
 
   .pf-process-aside {
-    min-height: 305px;
+    min-height: 220px;
     padding: 22px 20px;
   }
 
@@ -583,13 +488,6 @@
   .pf-process-aside > p:not(.pf-aside-kicker) {
     max-width: 230px;
     font-size: 12px;
-  }
-
-  .pf-mascot-wrap {
-    right: -40px;
-    bottom: -47px;
-    transform: rotate(7deg) scale(.82);
-    transform-origin: bottom right;
   }
 
   .pf-faq-layout {
@@ -617,18 +515,12 @@
   }
 
   .pf-faq-contact {
-    min-height: 270px;
+    min-height: 220px;
     padding: 23px 21px;
   }
 
   .pf-faq-contact h3 {
     font-size: 20px;
-  }
-
-  .pf-faq-contact-mascot {
-    right: -24px;
-    bottom: -42px;
-    transform: rotate(-10deg) scale(.86);
   }
 
   .pf-contact-dialog {
@@ -641,12 +533,5 @@
 
   .pf-dialog-actions {
     flex-direction: column-reverse;
-  }
-}
-
-@media (prefers-reduced-motion: reduce) {
-  .pf-mascot,
-  .pf-faq-contact-mascot img {
-    animation: none;
   }
 }

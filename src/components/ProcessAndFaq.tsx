@@ -1,5 +1,4 @@
 import { useCallback, useEffect, useRef, useState } from 'react'
-import { mascots } from '../data/mascots'
 import {
   CAREER_FAQ_CATEGORIES,
   CAREER_FAQS,
@@ -16,18 +15,6 @@ type ProcessSectionProps = {
 
 type FaqSectionProps = {
   onApply?: () => void
-}
-
-function ProcessMascot() {
-  return (
-    <div className="pf-mascot-wrap" aria-hidden="true">
-      <span className="pf-mascot-orbit pf-mascot-orbit-one" />
-      <span className="pf-mascot-orbit pf-mascot-orbit-two" />
-      <img className="pf-mascot" src={mascots.snow} alt="" />
-      <span className="pf-mascot-spark pf-mascot-spark-one">✦</span>
-      <span className="pf-mascot-spark pf-mascot-spark-two">·</span>
-    </div>
-  )
 }
 
 /** 招聘流程展示模块。步骤文案来自独立数据层，便于未来替换为已确认流程。 */
@@ -61,7 +48,6 @@ export function ProcessSection({ onApply }: ProcessSectionProps) {
           ))}
         </ol>
         <aside className="pf-process-aside">
-          <ProcessMascot />
           <p className="pf-aside-kicker">A SMALL NOTE</p>
           <h3>{CAREER_INFO.process.asideTitle}</h3>
           <p>{CAREER_INFO.process.asideDescription}</p>
@@ -204,7 +190,6 @@ export function FaqSection({ onApply }: FaqSectionProps) {
         </div>
 
         <aside className="pf-faq-contact">
-          <div className="pf-faq-contact-mascot" aria-hidden="true"><img src={mascots.orange} alt="" /></div>
           <p className="pf-aside-kicker">CAN’T FIND IT?</p>
           <h3>{CAREER_INFO.faq.asideTitle[0]}<br />{CAREER_INFO.faq.asideTitle[1]}</h3>
           <p>{CAREER_INFO.faq.asideDescription}</p>

@@ -1,0 +1,75 @@
+/* Mature Atoms visual layer: quiet, precise, and product-led. */
+.brand-led { --brand-ink: #30343d; --brand-muted: #727a87; --brand-line: #e1e4e8; --brand-blue: #9eafc4; }
+.brand-led .brand-hero { display: flex; flex-direction: column; padding-top: 45px; isolation: isolate; }
+.brand-led .brand-hero::before { inset: 240px -140px 55px; z-index: -1; background: radial-gradient(ellipse at 50% 55%, #e8edf391, transparent 65%); }
+.brand-led .brand-hero .recruit-hero-copy { text-align: center; padding: 0; }
+.brand-led .brand-hero .recruit-hero-copy .eyebrow { justify-content: center; color: #78818f; font-size: 10px; letter-spacing: 2px; }
+.brand-led .brand-hero .status-dot { background: #98a8bd; box-shadow: 0 0 0 4px #edf0f4; }
+.brand-led .brand-hero h1 { color: var(--brand-ink); font-size: clamp(45px, 5.1vw, 73px); line-height: 1.2; letter-spacing: -3px; margin: 25px 0 21px; }
+.brand-led .brand-hero h1 br { display: none; }
+.brand-led .brand-hero h1 span { color: #71839d; }
+.brand-led .brand-hero h1 span::after { display: none; }
+.brand-led .brand-hero .recruit-intro { max-width: 620px; margin-inline: auto; font-size: 15px; line-height: 1.8; }
+.brand-led .brand-hero .recruit-product { color: #5e6878; }
+.brand-led .brand-hero .recruit-invitation { margin-top: 7px; color: #858b94; font-size: 12px; }
+.brand-led .brand-hero .recruit-actions { justify-content: center; margin-top: 24px; gap: 27px; }
+.brand-led .brand-hero .recruit-actions .button { min-width: 142px; min-height: 46px; background: #333943; font-size: 12px; }
+.brand-led .brand-hero .recruit-actions .button:hover { background: #62758e; }
+.brand-led .brand-hero .recruit-secondary { color: #657386; }
+.brand-led .brand-hero .recruit-byline { display: none; }
+.brand-led .brand-hero .recruit-hero-foot { margin-top: 13px; padding: 22px 0; color: #7a8491; border-color: var(--brand-line); }
+.brand-led .brand-hero .recruit-hero-foot div > span { color: #9aa9bc; }
+
+.brand-visual { position: relative; width: min(780px, 100%); margin: 19px auto 0; aspect-ratio: 640 / 560; }
+.brand-visual-light { position: absolute; inset: 7% 12% 4%; background: radial-gradient(ellipse at 48% 45%, #e0e8f474, transparent 62%), radial-gradient(ellipse at 70% 72%, #e8e1f36b, transparent 55%); }
+.brand-visual-index { position: absolute; top: 9%; left: 5%; color: #9aa6b7; font: 8px 'IBM Plex Mono', monospace; letter-spacing: 1.8px; }
+.brand-sculpture { position: absolute; inset: 0; width: 100%; height: 100%; overflow: visible; }
+.brand-field-lines { opacity: .85; }
+.brand-form { transform-origin: 320px 280px; animation: brand-breathe 12s ease-in-out infinite; }
+.brand-visual.is-paused .brand-form { animation-play-state: paused; }
+.brand-visual-caption { position: absolute; bottom: 5%; left: 50%; display: flex; align-items: center; gap: 13px; transform: translateX(-50%); color: #7c8796; font-size: 10px; white-space: nowrap; }
+.brand-visual-caption i { width: 25px; height: 1px; background: #c1cbd7; }
+.brand-motion { position: absolute; right: 7%; bottom: 6%; display: grid; width: 31px; height: 31px; place-items: center; border: 1px solid #dbe1e8; border-radius: 50%; background: #ffffffb8; color: #76859b; }
+.brand-motion:hover { border-color: #b0bfd0; background: #fff; }
+@keyframes brand-breathe { 0%, 100% { transform: translateY(0) rotate(-1deg) scale(1); } 50% { transform: translateY(-5px) rotate(1deg) scale(1.012); } }
+
+.brand-led .editorial-job-card { min-height: 242px; padding: 26px 28px; border-color: #e0e3e6; border-radius: 14px; background: #fbfbfa; }
+.brand-led .editorial-job-card:hover { border-color: #b6c2d0; box-shadow: 0 9px 24px #5b66750c; }
+.brand-led .editorial-job-card .sample-tag { margin-bottom: 19px; }
+.brand-led .editorial-job-card .job-department { color: #8a95a3; }
+.brand-led .editorial-job-card h3 { max-width: 100%; color: #30343d; font-size: 21px; }
+.brand-led .editorial-job-card .job-summary { max-width: 100%; color: #7c838c; }
+.brand-led .editorial-job-card .job-meta { color: #7b8794; }
+.brand-led .editorial-job-card .job-card-link { color: #64748a; border-color: #e7eaed; }
+.brand-led .editorial-job-card .job-arrow { border-color: #d8dfe7; }
+.brand-led .detail-hero { border-color: #dde2e8; border-radius: 16px; background: linear-gradient(120deg, #f5f7f8, #fafaf9 70%, #f0f3f7); }
+.brand-led .detail-hero h1 { color: #30343d; }
+.brand-led .detail-hero > div > p { color: #707985; }
+.brand-led .detail-mission { border-color: #e1e4e8; border-radius: 14px; background: #f5f6f6; }
+.brand-led .detail-mission h2, .brand-led .detail-section h2 { color: #475362; }
+.brand-led .detail-section { border-color: #e2e5e8; }
+.brand-led .detail-section li { color: #737d88; }
+.brand-led .apply-sidebar { border-color: #dfe4e8; border-radius: 15px; background: #f1f4f6; }
+.brand-led .apply-sidebar h2 { color: #445262; }
+.brand-led .apply-sidebar > p { color: #798592; }
+.brand-led .application-dialog { border-color: #dfe4e8; border-radius: 16px; background: #fbfbfa; }
+
+@media (max-width: 760px) {
+  .brand-led .brand-hero { padding-top: 34px; }
+  .brand-led .brand-hero h1 { font-size: clamp(38px, 8.4vw, 53px); line-height: 1.3; letter-spacing: -2px; margin: 21px 0 18px; }
+  .brand-led .brand-hero h1 br { display: block; }
+  .brand-led .brand-hero .recruit-intro { max-width: 335px; font-size: 13px; }
+  .brand-led .brand-hero .recruit-invitation { font-size: 11px; line-height: 1.9; }
+  .brand-led .brand-hero .recruit-actions { margin-top: 20px; }
+  .brand-led .brand-hero .recruit-hero-foot { gap: 8px; margin-top: 10px; padding: 20px 0; font-size: 9px; }
+  .brand-visual { width: min(540px, 108%); margin-top: 20px; aspect-ratio: 640 / 535; }
+  .brand-visual-index { top: 8%; left: 2%; font-size: 6px; letter-spacing: .9px; }
+  .brand-visual-caption { bottom: 4%; gap: 8px; font-size: 9px; }
+  .brand-visual-caption i { width: 16px; }
+  .brand-motion { right: 2%; bottom: 5%; width: 28px; height: 28px; }
+  .brand-led .editorial-job-card { min-height: 0; padding: 22px; border-radius: 14px; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .brand-form { animation: none; }
+}
