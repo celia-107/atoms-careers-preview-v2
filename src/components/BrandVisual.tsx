@@ -52,9 +52,15 @@ export function BrandVisual() {
         <circle className="brand-orbit-signal" cx="424" cy="371" r="1.8" />
         <circle className="brand-orbit-signal brand-orbit-signal-secondary" cx="183" cy="201" r="1.4" />
       </g>
+      <g className="brand-traces" fill="none" aria-hidden="true">
+        <path className="brand-trace brand-trace-primary" d="M73 397C149 171 371 70 560 195" />
+        <path className="brand-trace brand-trace-secondary" d="M93 163C236 78 474 153 545 379" />
+        <circle className="brand-trace-point brand-trace-point-primary" cx="560" cy="195" r="2.7" />
+        <circle className="brand-trace-point brand-trace-point-secondary" cx="93" cy="163" r="2" />
+      </g>
       <ellipse cx="335" cy="457" rx="142" ry="12" fill="#8490a5" opacity=".09" filter={ref('blur')} />
       <g className="brand-form">
-        <g transform="translate(155 93) scale(23)">
+        <g transform="translate(155 62) scale(23)">
           <g filter={ref('shadow')}>
             {markPaths.map((d, index) => <g key={d}>
               <path d={d} transform="translate(.14 .2)" fill={ref('depth')} />
