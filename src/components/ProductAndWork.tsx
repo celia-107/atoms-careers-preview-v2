@@ -48,6 +48,7 @@ export function ProductSection({ jobs }: { jobs: Job[] }) {
           <p>{item.description}</p>
         </article>)}
       </div>
+      <p className="pw-problem-closing">{content.closing}</p>
 
       <div className="pw-product-layout">
         <div className="pw-product-copy">
@@ -145,7 +146,17 @@ export function WorkSection() {
             <div className="pw-work-line" aria-hidden="true">{content.steps.map((step, index) => <span key={step.id} className={index === activeIndex ? 'is-active' : undefined} />)}</div>
           </article>
         </div>
-        <div className="pw-vibe-closing"><p>{content.closing}</p></div>
+        <div className="pw-vibe-closing" id="vibe">
+          <div className="pw-vibe-copy">
+            <p className="pw-vibe-eyebrow">{content.vibe.eyebrow}</p>
+            <h3>{content.vibe.title}</h3>
+            <p>{content.vibe.description}</p>
+          </div>
+          <ul className="pw-vibe-points">
+            {content.vibe.points.map((point) => <li key={point}>{point}</li>)}
+          </ul>
+          <p className="pw-vibe-belief">{content.vibe.closing}</p>
+        </div>
       </div>
     </section>
   )

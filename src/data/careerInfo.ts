@@ -26,7 +26,7 @@ export type FaqItem = {
 
 export const CAREER_INFO = {
   process: {
-    eyebrow: '05 / HOW WE MEET',
+    eyebrow: '06 / HOW WE MEET',
     heading: ['从一次交流，', '开始一起做事。'],
     introduction: ['我们希望尽早看到真实的思考和协作。', '下面是帮助你了解节奏的流程示例。'],
     asideTitle: '带着你真正做过的东西来。',
@@ -34,7 +34,7 @@ export const CAREER_INFO = {
     notice: '流程示例 · 具体安排待团队确认',
   },
   faq: {
-    eyebrow: '06 / BEFORE YOU APPLY',
+    eyebrow: '07 / BEFORE YOU APPLY',
     heading: ['还有问题？', '先从这里找到答案。'],
     introduction: ['关于岗位、作品和协作方式的常见问题。', '未确认的信息，我们会清楚标注。'],
     asideTitle: ['没有合适的岗位，', '也可以先认识彼此。'],

@@ -5,6 +5,7 @@ import { RecruitHero } from './components/RecruitHero'
 import { ProductSection, WorkSection } from './components/ProductAndWork'
 import { ProcessSection, FaqSection } from './components/ProcessAndFaq'
 import { mascots } from './data/mascots'
+import { getJobFunction, JOB_EMPLOYMENT_TYPES, JOB_FUNCTIONS, JOB_LOCATIONS } from './data/jobFilters'
 import { applicationPath, siteHref } from './routing'
 import './careers.css'
 import './brand-theme.css'
@@ -89,20 +90,23 @@ function Header({ home }: { home: boolean }) {
         <a href={home ? '#faq' : siteHref('/#faq')} onClick={close}>常见问题</a>
         <a href="https://atoms.dev/zh/dashboard" target="_blank" rel="noreferrer" onClick={close}>探索 Atoms <Icon name="arrow-up" size={14} /></a>
       </nav>
-      <a className="button button-small button-dark header-cta" href={home ? '#jobs' : siteHref('/#jobs')}>查看岗位 <Icon name="arrow-up" size={16} /></a>
+      <a className="button button-small button-dark header-cta" href={home ? '#jobs' : siteHref('/#jobs')}>查看开放岗位 <Icon name="arrow-up" size={16} /></a>
       <button className="icon-button mobile-toggle" onClick={() => setMobileOpen(!mobileOpen)} aria-label={mobileOpen ? '关闭导航' : '打开导航'} aria-expanded={mobileOpen}><Icon name={mobileOpen ? 'close' : 'menu'} /></button>
     </div>
   </header>
 }
 
-function JobCard({ job }: { job: Job }) {
+function JobCard({ job, onApply }: { job: Job; onApply: () => void }) {
   return <article className="job-card editorial-job-card">
     {jobsPresentation.isMock && <span className="sample-tag">{jobsPresentation.itemLabel}</span>}
     <span className="job-department">{job.department}</span>
     <h3><RouteLink href={`/jobs/${encodeURIComponent(job.id)}`}>{job.title}</RouteLink></h3>
     <p className="job-summary">{job.summary}</p>
     <div className="job-meta"><span><Icon name="pin" size={14} />{job.location}</span><span><Icon name="briefcase" size={14} />{job.employmentType}</span></div>
-    <RouteLink href={`/jobs/${encodeURIComponent(job.id)}`} className="job-card-link"><span>查看详情</span><span className="job-arrow"><Icon name="arrow-up" size={18} /></span></RouteLink>
+    <div className="job-card-actions">
+      <RouteLink href={`/jobs/${encodeURIComponent(job.id)}`} className="job-card-link"><span>查看详情</span><span className="job-arrow"><Icon name="arrow-up" size={18} /></span></RouteLink>
+      <button type="button" className="job-apply-link" onClick={onApply}>立即投递 <Icon name="arrow-up" size={15} /></button>
+    </div>
   </article>
 }
 
@@ -111,15 +115,18 @@ function StatePanel({ type, onRetry }: { type: 'loading' | 'empty' | 'error'; on
   return <div className="state-panel" role="status"><span className="state-icon"><Icon name={type === 'error' ? 'refresh' : 'search'} size={28} /></span><h3>{type === 'error' ? '岗位暂时没有加载出来' : '暂时没有符合条件的岗位'}</h3><p>{type === 'error' ? '请稍后重试，我们会继续为你寻找好机会。' : '试试其他分类或地点，也许你的下一站就在那里。'}</p><button className="button button-outline" onClick={onRetry}>{type === 'error' ? '重新加载' : '清空筛选'} <Icon name={type === 'error' ? 'refresh' : 'arrow'} size={16} /></button></div>
 }
 
-function JobsSection({ jobs, loading, error, reload, query }: { jobs: Job[]; loading: boolean; error: boolean; reload: () => void; query: string }) {
+function JobsSection({ jobs, loading, error, reload, query, onApply }: { jobs: Job[]; loading: boolean; error: boolean; reload: () => void; query: string; onApply: (job: Job) => void }) {
   const params = new URLSearchParams(query)
-  const department = params.get('department') || '全部岗位'
-  const location = params.get('location') || '全部地点'
-  const employment = params.get('employment') || '全部类型'
+  const rawDepartment = params.get('department')
+  const rawLocation = params.get('location')
+  const rawEmployment = params.get('employment')
+  const department = rawDepartment && (JOB_FUNCTIONS as readonly string[]).includes(rawDepartment) ? rawDepartment : '全部岗位'
+  const location = rawLocation && (JOB_LOCATIONS as readonly string[]).includes(rawLocation) ? rawLocation : '全部地点'
+  const employment = rawEmployment && (JOB_EMPLOYMENT_TYPES as readonly string[]).includes(rawEmployment) ? rawEmployment : '全部类型'
   const search = params.get('q') || ''
-  const departments = ['全部岗位', ...new Set(jobs.map((job) => job.department))]
-  const locations = ['全部地点', ...new Set(jobs.flatMap((job) => job.location.split(' / ')))]
-  const employmentTypes = ['全部类型', ...new Set(jobs.flatMap((job) => job.employmentType.split(' / ')))]
+  const departments = JOB_FUNCTIONS
+  const locations = JOB_LOCATIONS
+  const employmentTypes = JOB_EMPLOYMENT_TYPES
   const updateFilters = (values: Record<string, string | null>) => {
     const next = new URLSearchParams(window.location.search)
     Object.entries(values).forEach(([key, value]) => value ? next.set(key, value) : next.delete(key))
@@ -127,14 +134,14 @@ function JobsSection({ jobs, loading, error, reload, query }: { jobs: Job[]; loa
     window.dispatchEvent(new PopStateEvent('popstate'))
   }
   const filtered = jobs.filter((job) =>
-    (department === '全部岗位' || job.department === department) &&
+    (department === '全部岗位' || getJobFunction(job) === department) &&
     (location === '全部地点' || job.location.split(' / ').includes(location)) &&
     (employment === '全部类型' || job.employmentType.split(' / ').includes(employment)) &&
     `${job.title} ${job.summary} ${job.department}`.toLowerCase().includes(search.toLowerCase().trim()))
   const hasFilters = department !== '全部岗位' || location !== '全部地点' || employment !== '全部类型' || Boolean(search)
   const reset = () => updateFilters({ department: null, location: null, employment: null, q: null })
   return <section className="jobs-section" id="jobs"><div className="section-shell">
-    <div className="section-heading"><div><p className="eyebrow">04 / FIND YOUR NEXT</p><h2>找到你的位置，<br />一起把事情做成。</h2></div><p>找到适合你的方向。<br />带着好奇心，也带着你的作品。</p></div>
+    <div className="section-heading"><div><p className="eyebrow">05 / 开放岗位</p><h2>找到适合你的问题，<br />一起把它做出来。</h2></div><p>城市：深圳 / 厦门。<br />岗位信息以招聘系统当前状态为准。</p></div>
     <div className="jobs-toolbar">
       <div className="filter-tabs" role="group" aria-label="按岗位分类筛选">{departments.map(name => <button className={department === name ? 'active' : ''} key={name} onClick={() => updateFilters({department: name === '全部岗位' ? null : name})} aria-pressed={department === name}>{name}</button>)}</div>
       <div className="filter-fields">
@@ -144,8 +151,9 @@ function JobsSection({ jobs, loading, error, reload, query }: { jobs: Job[]; loa
       </div>
     </div>
     <div className="jobs-summary"><span aria-live="polite">{loading ? '正在加载岗位…' : error ? '加载遇到问题' : `${filtered.length} 个${jobsPresentation.isMock ? '示例' : '招聘中'}岗位`}</span>{jobsPresentation.listNote && <span>{jobsPresentation.listNote}</span>}{hasFilters && <button className="clear-filters" onClick={reset}>清空筛选 ×</button>}</div>
-    {loading ? <StatePanel type="loading" /> : error ? <StatePanel type="error" onRetry={reload} /> : filtered.length ? <div className="jobs-grid">{filtered.map(job => <JobCard job={job} key={job.id} />)}</div> : !hasFilters ? <div className="state-panel" role="status"><img className="empty-mascot" src={mascots.snow} alt="" /><h3>新机会，正在路上。</h3><p>目前暂无可展示的开放岗位，可以稍后再来看看。</p><button className="button button-outline" onClick={reload}>刷新岗位 <Icon name="refresh" size={16} /></button></div> : <StatePanel type="empty" onRetry={reset} />}
+    {loading ? <StatePanel type="loading" /> : error ? <StatePanel type="error" onRetry={reload} /> : filtered.length ? <div className="jobs-grid">{filtered.map(job => <JobCard job={job} onApply={() => onApply(job)} key={job.id} />)}</div> : !hasFilters ? <div className="state-panel" role="status"><img className="empty-mascot" src={mascots.snow} alt="" /><h3>新机会，正在路上。</h3><p>目前暂无可展示的开放岗位，可以稍后再来看看。</p><button className="button button-outline" onClick={reload}>刷新岗位 <Icon name="refresh" size={16} /></button></div> : <StatePanel type="empty" onRetry={reset} />}
     <div className="jobs-footnote"><Icon name="spark" size={17} /><p>你的价值，不只在简历里。<span> 一个有判断、有完成度的作品，同样能让我们认识你。</span></p></div>
+    <div className="jobs-cta"><p>如果你正在寻找一个能把想法做成产品的地方，欢迎看看我们正在开放的岗位。</p><a className="button button-dark" href="#jobs">查看开放岗位 <Icon name="arrow-up" size={16} /></a></div>
   </div></section>
 }
 
@@ -210,7 +218,7 @@ export default function App() {
     if (window.location.hash && !loading) requestAnimationFrame(() => document.getElementById(window.location.hash.slice(1))?.scrollIntoView())
   }, [job, path, loading])
   return <div className="careers-site brand-led"><a className="skip-link" href="#main-content">跳到主要内容</a><Header home={home} />
-    {home ? <main id="main-content"><RecruitHero onApply={() => setApplication({ job: null })} /><ProductSection jobs={jobs} /><WorkSection /><JobsSection query={search} jobs={jobs} loading={loading} error={error} reload={() => setAttempt(attempt + 1)} /><ProcessSection onApply={() => setApplication({ job: null })} /><FaqSection onApply={() => setApplication({ job: null })} /></main> : jobId && loading ? <main id="main-content" className="route-state section-shell"><StatePanel type="loading" /></main> : jobId && error ? <main id="main-content" className="route-state section-shell"><StatePanel type="error" onRetry={() => setAttempt(attempt + 1)} /></main> : job ? <div id="main-content"><JobDetail job={job} onApply={() => setApplication({ job })} /></div> : <main id="main-content" className="not-found section-shell"><p className="eyebrow">LOOKING FOR SOMETHING?</p><h1>这个岗位暂时不在这里。</h1><p>岗位可能已关闭，或链接有误。去看看其他方向吧。</p><RouteLink className="button button-dark" href="/#jobs">返回岗位列表 <Icon name="arrow" size={18} /></RouteLink></main>}
+    {home ? <main id="main-content"><RecruitHero /><ProductSection jobs={jobs} /><WorkSection /><JobsSection query={search} jobs={jobs} loading={loading} error={error} reload={() => setAttempt(attempt + 1)} onApply={(selectedJob) => setApplication({ job: selectedJob })} /><ProcessSection onApply={() => setApplication({ job: null })} /><FaqSection onApply={() => setApplication({ job: null })} /></main> : jobId && loading ? <main id="main-content" className="route-state section-shell"><StatePanel type="loading" /></main> : jobId && error ? <main id="main-content" className="route-state section-shell"><StatePanel type="error" onRetry={() => setAttempt(attempt + 1)} /></main> : job ? <div id="main-content"><JobDetail job={job} onApply={() => setApplication({ job })} /></div> : <main id="main-content" className="not-found section-shell"><p className="eyebrow">LOOKING FOR SOMETHING?</p><h1>这个岗位暂时不在这里。</h1><p>岗位可能已关闭，或链接有误。去看看其他方向吧。</p><RouteLink className="button button-dark" href="/#jobs">返回岗位列表 <Icon name="arrow" size={18} /></RouteLink></main>}
     <Footer />{application && <ApplicationModal jobs={jobs} job={application.job} loading={loading} error={error} onRetry={() => setAttempt(attempt + 1)} onClose={() => setApplication(null)} />}
   </div>
 }

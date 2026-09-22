@@ -11,6 +11,7 @@
 .brand-led .brand-hero h1 span::after { display: none; }
 .brand-led .brand-hero .recruit-intro { max-width: 620px; margin-inline: auto; font-size: 15px; line-height: 1.8; }
 .brand-led .brand-hero .recruit-product { color: #5e6878; }
+.brand-led .brand-hero .recruit-company { margin-top: 9px; color: #7b8490; font-size: 13px; line-height: 1.85; }
 .brand-led .brand-hero .recruit-invitation { margin-top: 7px; color: #858b94; font-size: 12px; }
 .brand-led .brand-hero .recruit-actions { justify-content: center; margin-top: 24px; gap: 27px; }
 .brand-led .brand-hero .recruit-actions .button { min-width: 142px; min-height: 46px; background: #333943; font-size: 12px; }
@@ -21,6 +22,7 @@
 .brand-led .brand-hero .recruit-hero-foot div > span { color: #9aa9bc; }
 
 .brand-visual { position: relative; width: min(780px, 100%); margin: 19px auto 0; aspect-ratio: 640 / 560; }
+.brand-led .brand-visual { margin-top: -45px; }
 .brand-visual-light { position: absolute; inset: 7% 12% 4%; background: radial-gradient(ellipse at 48% 45%, #e0e8f474, transparent 62%), radial-gradient(ellipse at 70% 72%, #e8e1f36b, transparent 55%); animation: brand-light-drift 16s ease-in-out infinite; }
 .brand-visual-index { position: absolute; top: 9%; left: 5%; color: #9aa6b7; font: 8px 'IBM Plex Mono', monospace; letter-spacing: 1.8px; }
 .brand-sculpture { position: absolute; inset: 0; width: 100%; height: 100%; overflow: visible; }
@@ -74,6 +76,13 @@
 .brand-led .editorial-job-card .job-meta { color: #7b8794; }
 .brand-led .editorial-job-card .job-card-link { color: #64748a; border-color: #e7eaed; }
 .brand-led .editorial-job-card .job-arrow { border-color: #d8dfe7; }
+.brand-led .job-card-actions { display: grid; grid-template-columns: minmax(0, 1fr) auto; align-items: center; gap: 16px; border-top: 1px solid #e7eaed; margin-top: 22px; }
+.brand-led .job-card-actions .job-card-link { border-top: 0; margin-top: 0; padding-top: 16px; }
+.brand-led .job-apply-link { display: inline-flex; align-items: center; gap: 7px; border: 0; background: transparent; color: #64748a; cursor: pointer; font-size: 11px; padding: 15px 0 0; white-space: nowrap; }
+.brand-led .job-apply-link:hover { color: #30343d; }
+.brand-led .jobs-cta { display: flex; align-items: center; justify-content: space-between; gap: 24px; margin-top: 40px; padding: 25px 0 0; border-top: 1px solid #dfe2e5; }
+.brand-led .jobs-cta p { max-width: 560px; color: #6f7883; font-size: 13px; line-height: 1.8; }
+.brand-led .jobs-cta .button { flex-shrink: 0; min-height: 43px; font-size: 11px; }
 .brand-led .detail-hero { border-color: #dde2e8; border-radius: 16px; background: linear-gradient(120deg, #f5f7f8, #fafaf9 70%, #f0f3f7); }
 .brand-led .detail-hero h1 { color: #30343d; }
 .brand-led .detail-hero > div > p { color: #707985; }
@@ -92,14 +101,20 @@
   .brand-led .brand-hero h1 br { display: block; }
   .brand-led .brand-hero .recruit-intro { max-width: 335px; font-size: 13px; }
   .brand-led .brand-hero .recruit-invitation { font-size: 11px; line-height: 1.9; }
+  .brand-led .brand-hero .recruit-company { font-size: 11px; line-height: 1.85; }
   .brand-led .brand-hero .recruit-actions { margin-top: 20px; }
   .brand-led .brand-hero .recruit-hero-foot { gap: 8px; margin-top: 10px; padding: 20px 0; font-size: 9px; }
-  .brand-visual { width: min(540px, 108%); margin-top: 20px; aspect-ratio: 640 / 535; }
+  .brand-led .brand-visual { width: min(540px, 108%); margin-top: 20px; aspect-ratio: 640 / 535; }
   .brand-visual-index { top: 8%; left: 2%; font-size: 6px; letter-spacing: .9px; }
   .brand-visual-caption { bottom: 4%; gap: 8px; font-size: 9px; }
   .brand-visual-caption i { width: 16px; }
   .brand-motion { right: 2%; bottom: 5%; width: 28px; height: 28px; }
   .brand-led .editorial-job-card { min-height: 0; padding: 22px; border-radius: 14px; }
+  .brand-led .job-card-actions { gap: 10px; }
+  .brand-led .job-apply-link { font-size: 10px; }
+  .brand-led .jobs-cta { display: block; margin-top: 30px; padding-top: 20px; }
+  .brand-led .jobs-cta p { font-size: 11px; margin-bottom: 16px; }
+  .brand-led .jobs-cta .button { width: 100%; }
 }
 
 @media (prefers-reduced-motion: reduce) {

@@ -1,7 +1,7 @@
 import { careerStory } from '../data/careerStory'
 import { BrandVisual } from './BrandVisual'
 
-export function RecruitHero({ onApply }: { onApply: () => void }) {
+export function RecruitHero() {
   const content = careerStory.hero
   return <section className="recruit-hero brand-hero section-shell" aria-labelledby="hero-title">
     <div className="recruit-hero-copy">
@@ -9,9 +9,10 @@ export function RecruitHero({ onApply }: { onApply: () => void }) {
       <h1 id="hero-title">{content.title}<br /><span>{content.titleAccent}</span></h1>
       <div className="recruit-intro">
         <p className="recruit-product">{content.product}</p>
+        <p className="recruit-company">{content.company}</p>
         <p className="recruit-invitation">{content.invitation}</p>
       </div>
-      <div className="recruit-actions"><a href="#jobs" className="button button-dark">{content.jobsAction} <span aria-hidden="true">↗</span></a><button type="button" onClick={onApply} className="recruit-secondary">{content.applyAction} <span aria-hidden="true">↗</span></button></div>
+      <div className="recruit-actions"><a href="#jobs" className="button button-dark">{content.jobsAction} <span aria-hidden="true">↗</span></a><a href="#product" className="recruit-secondary">{content.applyAction} <span aria-hidden="true">↗</span></a></div>
       <p className="recruit-byline">{content.byline}</p>
     </div>
     <BrandVisual />
