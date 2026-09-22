@@ -39,9 +39,18 @@ export function BrandVisual() {
         </filter>
         <filter id={`${id}-blur`}><feGaussianBlur stdDeviation="12" /></filter>
       </defs>
-      <g className="brand-field-lines" fill="none" stroke="#d9dce2" strokeWidth=".75">
+      <g className="brand-field-lines" fill="none" stroke="#d9dce2" strokeWidth=".75" aria-hidden="true">
         <ellipse cx="326" cy="286" rx="271" ry="171" transform="rotate(-28 326 286)" />
         <path d="M75 417C184 449 430 445 567 332" strokeDasharray="2 7" />
+      </g>
+      <g className="brand-orbit-system" fill="none" aria-hidden="true">
+        <ellipse className="brand-orbit-track" cx="326" cy="286" rx="225" ry="137" transform="rotate(-28 326 286)" />
+        <ellipse className="brand-orbit-track brand-orbit-track-secondary" cx="326" cy="286" rx="186" ry="103" transform="rotate(24 326 286)" />
+        <circle className="brand-core" cx="326" cy="286" r="5" />
+        <circle className="brand-orbit-node brand-orbit-node-primary" cx="552" cy="181" r="3.2" />
+        <circle className="brand-orbit-node brand-orbit-node-secondary" cx="212" cy="402" r="2.4" />
+        <circle className="brand-orbit-signal" cx="424" cy="371" r="1.8" />
+        <circle className="brand-orbit-signal brand-orbit-signal-secondary" cx="183" cy="201" r="1.4" />
       </g>
       <ellipse cx="335" cy="457" rx="142" ry="12" fill="#8490a5" opacity=".09" filter={ref('blur')} />
       <g className="brand-form">
@@ -55,8 +64,8 @@ export function BrandVisual() {
           </g>
         </g>
       </g>
-      <g fill="#9cabc0"><circle cx="87" cy="371" r="2.5" /><circle cx="558" cy="175" r="2.5" /></g>
-      <g stroke="#b4bdca" strokeWidth="1"><path d="M95 115h12m-6-6v12M527 427h12m-6-6v12" /></g>
+      <g className="brand-registration" fill="#9cabc0" aria-hidden="true"><circle cx="87" cy="371" r="2.5" /><circle cx="558" cy="175" r="2.5" /></g>
+      <g className="brand-registration" stroke="#b4bdca" strokeWidth="1" aria-hidden="true"><path d="M95 115h12m-6-6v12M527 427h12m-6-6v12" /></g>
     </svg>
     <figcaption className="brand-visual-caption"><span>想法</span><i aria-hidden="true" /><span>构建</span><i aria-hidden="true" /><span>交付</span></figcaption>
     <button className="brand-motion" type="button" aria-label={paused ? '播放品牌动画' : '暂停品牌动画'} aria-pressed={paused} onClick={() => setPaused(!paused)}><svg width="14" height="14" viewBox="0 0 14 14" aria-hidden="true">{paused ? <path d="M4 2.5 11 7 4 11.5Z" fill="currentColor" /> : <path d="M5 3v8M9 3v8" fill="none" stroke="currentColor" strokeWidth="1.5" />}</svg></button>
