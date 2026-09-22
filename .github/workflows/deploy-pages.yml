@@ -30,7 +30,7 @@ jobs:
       - name: Check job data adapters
         run: npm run test:jobs
       - name: Build public site
-        run: npm run build -- --base /atoms-careers-preview/
+        run: npm run build -- --base /atoms-careers-preview-v2/
         env:
           VITE_JOBS_SOURCE: feishu
       - name: Upload site

@@ -42,7 +42,7 @@ export default defineConfig(({ command, isPreview }) => {
   const source = process.env.VITE_JOBS_SOURCE || 'feishu'
   if (source !== 'mock' && source !== 'feishu') throw new Error('VITE_JOBS_SOURCE must be mock or feishu')
   return {
-    base: command === 'build' || isPreview ? '/atoms-careers-preview/' : '/',
+    base: command === 'build' || isPreview ? '/atoms-careers-preview-v2/' : '/',
     // The browser and static route generator must use the exact same source.
     define: { 'import.meta.env.VITE_JOBS_SOURCE': JSON.stringify(source) },
     plugins: [react(), staticRouteEntries(source)],
